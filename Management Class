@@ -1,0 +1,75 @@
+#This class houses all of the functions for the main and individual submenus
+class Management:
+    def __init__(self, doctors_file, patients_file):
+        self.doctors_file = doctors_file
+        self.patients_file = patients_file
+
+#This function prints the main menu with 3 options the two sub menus and the quit program
+    def display_menu(self):
+        while repeat:
+            print("\nMAIN MENU\n1. Doctors\n2. Patients\n3. Exit")
+            choice = input("Enter your choice: ")
+            
+            if choice == "1":
+                self.doctors_submenu()
+            elif choice == "2":
+                self.patients_submenu()
+            elif choice == "3":
+                print("Exiting program...")
+                break
+            else:
+                print("Invalid choice. Try again.")
+
+ #This function is called when the user selects 1 on the main menu
+ #This function houses all of the options to use to read or write on the doctors file
+    def doctors_submenu(self):
+        while repeat:
+            print("\nDOCTORS SUBMENU\n1. Display Doctors\n2. Search Doctor by ID\n3. Search Doctor by Name\n4. Add Doctor\n5. Edit Doctor\n6. Return to Main Menu")
+            choice = input("Enter your choice: ")
+            
+            doctor_manager = DoctorManager()
+
+            if choice == "1":
+                doctor_manager.display_doctors_list()
+            elif choice == "2":
+                doctor_manager.search_doctor_by_id()
+            elif choice == "3":
+                doctor_manager.search_doctor_by_name()
+            elif choice == "4":
+                doctor_manager.add_dr_to_file()
+            elif choice == "5":
+                doctor_manager.edit_doctor_info()
+            elif choice == "6":
+                break
+            else:
+                print("Invalid choice. Try again.")
+         
+    def patients_submenu(self):
+        while repeat:
+            print("\nPATIENTS SUBMENU\n1. Display Patients\n2. Search Patient by ID\n3. Edit Patient Info\n4. Add Patient\n5. Go back to MAIN MENU")
+            choice = input("Enter your choice: ")
+
+            patient_manager = PatientManager()
+
+            if choice == "1":
+                patient_manager.display_patients_list()
+            elif choice == "2":
+                patient_manager.search_patient_by_id()
+            elif choice == "3":
+                patient_manager.add_patient_to_file()
+            elif choice == "4":
+                patient_manager.edit_patient_info_by_id()
+            elif choice == "5":
+                break
+            else:
+                print("Invalid choice. Try again.")
+
+
+    
+if __name__ == "__main__":
+    management_instance = Management("doctors.txt", "patients.txt")
+    management_instance.display_menu()
+
+
+
+
